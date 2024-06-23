@@ -80,6 +80,37 @@ def report_match(tid, rnd, mid, result):
     ):
         flash("This match has already been reported - please contact the TO for edits")
         return redirect_for_round(tid=tournament.id, rnd=rnd)
+    if result == MatchReport.CORP_CORP_CORP_WIN.value:
+        m_logic.corp_corp_corp_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.CORP_CORP_DRAW_WIN.value:
+        m_logic.corp_corp_draw_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.CORP_CORP_RUNNER_WIN.value:
+        m_logic.corp_corp_runner_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.CORP_DRAW_DRAW_WIN.value:
+        m_logic.corp_draw_draw_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.CORP_DRAW_RUNNER_WIN.value:
+        m_logic.corp_draw_runner_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.DRAW_DRAW_DRAW.value:
+        m_logic.draw_draw_draw(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.RUNNER_RUNNER_RUNNER_WIN.value:
+        m_logic.runner_runner_runner_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.RUNNER_RUNNER_DRAW_WIN.value:
+        m_logic.runner_runner_draw_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.RUNNER_RUNNER_CORP_WIN.value:
+        m_logic.runner_runner_corp_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+    if result == MatchReport.RUNNER_DRAW_DRAW_WIN.value:
+        m_logic.runner_draw_draw_win(match)
+        return redirect_for_round(tid=tid, rnd=rnd)
+
     if result == MatchReport.RUNNER_WIN.value:
         m_logic.runner_win(match)
         return redirect_for_round(tid=tid, rnd=rnd)

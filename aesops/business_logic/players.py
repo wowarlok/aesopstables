@@ -20,6 +20,24 @@ def get_record(player: Player, count_byes=True) -> dict[str, float]:
             and match.concluded
         ):
             score += 1
+        if match.result == MatchResult.RUNNER_RUNNER_RUNNER_WIN.value and match.concluded:
+            score += 9
+        if match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value and match.concluded:
+            score += 6
+        if match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value and match.concluded:
+            score += 7
+        if match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value and match.concluded:
+            score += 5
+        if match.result == MatchResult.CORP_DRAW_DRAW_WIN.value and match.concluded:
+            score += 2
+        if match.result == MatchResult.CORP_CORP_DRAW_WIN.value and match.concluded:
+            score += 1
+        if match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value and match.concluded:
+            score += 4
+        if match.result == MatchResult.CORP_CORP_RUNNER_WIN.value and match.concluded:
+            score += 3
+        if match.result == MatchResult.DRAW_DRAW_DRAW.value and match.concluded:
+            score += 3
         games_played += 1
     for match in player.corp_matches:
         if not match.concluded:
@@ -31,6 +49,24 @@ def get_record(player: Player, count_byes=True) -> dict[str, float]:
             and match.concluded
         ):
             score += 1
+        if match.result == MatchResult.CORP_CORP_CORP_WIN.value and match.concluded:
+            score += 9
+        if match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value and match.concluded:
+            score += 3
+        if match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value and match.concluded:
+            score += 1
+        if match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value and match.concluded:
+            score += 2
+        if match.result == MatchResult.CORP_DRAW_DRAW_WIN.value and match.concluded:
+            score += 5
+        if match.result == MatchResult.CORP_CORP_DRAW_WIN.value and match.concluded:
+            score += 7
+        if match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value and match.concluded:
+            score += 4
+        if match.result == MatchResult.CORP_CORP_RUNNER_WIN.value and match.concluded:
+            score += 6
+        if match.result == MatchResult.DRAW_DRAW_DRAW.value and match.concluded:
+            score += 3
         if count_byes or not match.is_bye:
             games_played += 1
     return {"score": score, "games_played": games_played}
@@ -136,8 +172,65 @@ def side_record(player: Player, side):
                     results["W"] += 1
                 else:
                     results["L"] += 1
-            else:
+            if match.result == MatchResult.DRAW_DRAW_DRAW.value:
+                results["T"] +=3
+            if match.result == MatchResult.CORP_CORP_CORP_WIN.value:
+                if side == "corp":
+                    results["W"] += 3
+                else:
+                    results["L"] += 3
+            if match.result == MatchResult.CORP_CORP_RUNNER_WIN.value:
+                if side == "corp":
+                    results["W"] += 2
+                    results["L"] += 1
+                else:
+                    results["W"] += 1
+                    results["L"] += 2
+            if match.result == MatchResult.CORP_CORP_DRAW_WIN.value:
+                if side == "corp":
+                    results["W"] += 2
+                    results["T"] += 1
+                else:
+                    results["L"] += 2
+                    results["T"] += 1
+            if match.result == MatchResult.CORP_DRAW_DRAW_WIN.value:
+                if side == "corp":
+                    results["W"] += 1
+                    results["T"] += 2
+                else:
+                    results["L"] += 1
+                    results["T"] += 2
+            if match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value:
+                results["W"] += 1
+                results["L"] += 1
                 results["T"] += 1
+            if match.result == MatchResult.RUNNER_RUNNER_RUNNER_WIN.value:
+                if side == "runner":
+                    results["W"] += 3
+                else:
+                    results["L"] += 3
+            if match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value:
+                if side == "runner":
+                    results["W"] += 2
+                    results["L"] += 1
+                else:
+                    results["W"] += 1
+                    results["L"] += 2
+            if match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value:
+                if side == "runner":
+                    results["W"] += 2
+                    results["T"] += 1
+                else:
+                    results["L"] += 2
+                    results["T"] += 1
+            if match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value:
+                if side == "runner":
+                    results["W"] += 1
+                    results["T"] += 2
+
+                else:
+                    results["L"] += 1
+                    results["T"] += 2
     return results
 
 

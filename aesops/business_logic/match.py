@@ -10,6 +10,16 @@ def conclude(match: Match):
         MatchResult.RUNNER_WIN.value,
         MatchResult.DRAW.value,
         MatchResult.INTENTIONAL_DRAW.value,
+        MatchResult.CORP_CORP_CORP_WIN.value,
+        MatchResult.CORP_CORP_RUNNER_WIN.value,
+        MatchResult.CORP_CORP_DRAW_WIN.value,
+        MatchResult.CORP_DRAW_DRAW_WIN.value,
+        MatchResult.CORP_DRAW_RUNNER_WIN.value,
+        MatchResult.RUNNER_RUNNER_RUNNER_WIN.value,
+        MatchResult.RUNNER_RUNNER_CORP_WIN.value,
+        MatchResult.RUNNER_RUNNER_DRAW_WIN.value,
+        MatchResult.RUNNER_DRAW_DRAW_WIN.value,
+        MatchResult.DRAW_DRAW_DRAW.value,
     ]:
         raise ConclusionError("No result recorded")
     match.concluded = True
@@ -19,6 +29,56 @@ def conclude(match: Match):
 
 def corp_win(match: Match):
     match.result = MatchResult.CORP_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def corp_corp_corp_win(match: Match):
+    match.result = MatchResult.CORP_CORP_CORP_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def corp_corp_runner_win(match: Match):
+    match.result = MatchResult.CORP_CORP_RUNNER_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def corp_corp_draw_win(match: Match):
+    match.result = MatchResult.CORP_CORP_DRAW_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def corp_draw_draw_win(match: Match):
+    match.result = MatchResult.CORP_DRAW_DRAW_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def corp_draw_runner_win(match: Match):
+    match.result = MatchResult.CORP_DRAW_RUNNER_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def draw_draw_draw(match: Match):
+    match.result = MatchResult.DRAW_DRAW_DRAW.value
+    db.session.add(match)
+    db.session.commit()
+
+def runner_runner_runner_win(match: Match):
+    match.result = MatchResult.RUNNER_RUNNER_RUNNER_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def runner_runner_corp_win(match: Match):
+    match.result = MatchResult.RUNNER_RUNNER_CORP_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def runner_runner_draw_win(match: Match):
+    match.result = MatchResult.RUNNER_RUNNER_DRAW_WIN.value
+    db.session.add(match)
+    db.session.commit()
+
+def runner_draw_draw_win(match: Match):
+    match.result = MatchResult.RUNNER_DRAW_DRAW_WIN.value
     db.session.add(match)
     db.session.commit()
 

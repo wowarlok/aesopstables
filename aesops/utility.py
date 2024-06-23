@@ -30,8 +30,8 @@ def get_ids():
         for id in ids:
             id["name"] = id["name"].replace("\u201c", '"')
             id["name"] = id["name"].replace("\u201d", '"')
-        with open("ids.json", "w") as f:
-            dump(ids, f)
+        #with open("ids.json", "w") as f:
+        #    dump(ids, f)
     else:
         ids = []
         # If the file is older than a day, delete it and get a new one
@@ -109,6 +109,26 @@ def format_results(match: Match):
         return "0 - 3"
     if match.result in [MatchResult.DRAW.value, MatchResult.INTENTIONAL_DRAW.value]:
         return "1 - 1"
+    if match.result == MatchResult.CORP_CORP_CORP_WIN.value:
+        return "9 - 0"
+    if match.result == MatchResult.CORP_CORP_DRAW_WIN.value:
+        return "7 - 1"
+    if match.result == MatchResult.CORP_CORP_RUNNER_WIN.value:
+        return "6 - 3"
+    if match.result == MatchResult.CORP_DRAW_DRAW_WIN.value:
+        return "5 - 2"
+    if match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value:
+        return "4 - 4"
+    if match.result == MatchResult.DRAW_DRAW_DRAW.value:
+        return "3 - 3"
+    if match.result == MatchResult.RUNNER_RUNNER_RUNNER_WIN.value:
+        return "0 - 9"
+    if match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value:
+        return "3 - 6"
+    if match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value:
+        return "1 - 7"
+    if match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value:
+        return "2 - 5"
 
 
 def get_json(tid):

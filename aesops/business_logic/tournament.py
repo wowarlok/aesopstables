@@ -38,6 +38,24 @@ def get_record_from_memory(player: Player, matches: dict, count_byes=True):
         mem_match = matches[match.id]
         if mem_match.result == MatchResult.RUNNER_WIN.value and mem_match.concluded:
             score += 3
+        if mem_match.result == MatchResult.RUNNER_RUNNER_RUNNER_WIN.value and mem_match.concluded:
+            score += 9
+        if mem_match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value and mem_match.concluded:
+            score += 6
+        if mem_match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value and mem_match.concluded:
+            score += 7
+        if mem_match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value and mem_match.concluded:
+            score += 5
+        if mem_match.result == MatchResult.CORP_DRAW_DRAW_WIN.value and mem_match.concluded:
+            score += 2
+        if mem_match.result == MatchResult.CORP_CORP_DRAW_WIN.value and mem_match.concluded:
+            score += 1
+        if mem_match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value and mem_match.concluded:
+            score += 4
+        if mem_match.result == MatchResult.CORP_CORP_RUNNER_WIN.value and mem_match.concluded:
+            score += 3
+        if mem_match.result == MatchResult.DRAW_DRAW_DRAW.value and mem_match.concluded:
+            score += 3
         if (
             mem_match.result
             in [MatchResult.DRAW.value, MatchResult.INTENTIONAL_DRAW.value]
@@ -48,6 +66,24 @@ def get_record_from_memory(player: Player, matches: dict, count_byes=True):
     for match in player.corp_matches:
         mem_match = matches[match.id]
         if mem_match.result == MatchResult.CORP_WIN.value and mem_match.concluded:
+            score += 3
+        if mem_match.result == MatchResult.CORP_CORP_CORP_WIN.value and mem_match.concluded:
+            score += 9
+        if mem_match.result == MatchResult.RUNNER_RUNNER_CORP_WIN.value and mem_match.concluded:
+            score += 3
+        if mem_match.result == MatchResult.RUNNER_RUNNER_DRAW_WIN.value and mem_match.concluded:
+            score += 1
+        if mem_match.result == MatchResult.RUNNER_DRAW_DRAW_WIN.value and mem_match.concluded:
+            score += 2
+        if mem_match.result == MatchResult.CORP_DRAW_DRAW_WIN.value and mem_match.concluded:
+            score += 5
+        if mem_match.result == MatchResult.CORP_CORP_DRAW_WIN.value and mem_match.concluded:
+            score += 7
+        if mem_match.result == MatchResult.CORP_DRAW_RUNNER_WIN.value and mem_match.concluded:
+            score += 4
+        if mem_match.result == MatchResult.CORP_CORP_RUNNER_WIN.value and mem_match.concluded:
+            score += 6
+        if mem_match.result == MatchResult.DRAW_DRAW_DRAW.value and mem_match.concluded:
             score += 3
         if (
             mem_match.result

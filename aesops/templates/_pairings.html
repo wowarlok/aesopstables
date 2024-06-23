@@ -32,14 +32,26 @@
         or admin %}
         <th>
             {% if not match.is_bye %}
-            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_WIN.value)}}"
-                class="btn btn-primary">Corp Win</a>
-            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.DRAW.value)}}"
-                class="btn btn-primary">Tie</a>
-            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.RUNNER_WIN.value)}}"
-                class="btn btn-primary">Runner Win</a>
-            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.INTENTIONAL_DRAW.value)}}"
-                class="btn btn-primary">Intentional Draw</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_CORP_CORP_WIN.value)}}"
+                class="btn btn-primary">CCC</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_CORP_DRAW_WIN.value)}}"
+                class="btn btn-primary">CCD</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_CORP_RUNNER_WIN.value)}}"
+                class="btn btn-primary">CCR</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_DRAW_DRAW_WIN.value)}}"
+                class="btn btn-primary">CDD</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.CORP_DRAW_RUNNER_WIN.value)}}"
+                class="btn btn-primary">CDR</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.DRAW_DRAW_DRAW.value)}}"
+                class="btn btn-primary">DDD</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.RUNNER_DRAW_DRAW_WIN.value)}}"
+                class="btn btn-primary">RDD</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.RUNNER_RUNNER_CORP_WIN.value)}}"
+                class="btn btn-primary">RRC</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.RUNNER_RUNNER_DRAW_WIN.value)}}"
+                class="btn btn-primary">RRD</a>
+            <a href="{{ url_for('report_match',tid=tournament.id, rnd=rnd, mid=match.id, result=match_report.RUNNER_RUNNER_RUNNER_WIN.value)}}"
+                class="btn btn-primary">RRR</a>
             {% endif %}
             {% if admin and tournament.current_round == rnd%}
             <a href="{{ url_for('delete_match', mid=match.id)}}" class="btn btn-danger">Delete Match</a>
