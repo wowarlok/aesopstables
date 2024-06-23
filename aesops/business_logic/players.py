@@ -14,7 +14,7 @@ def get_record(player: Player, count_byes=True) -> dict[str, float]:
         if not match.concluded:
             continue
         if match.result == MatchResult.RUNNER_WIN.value and match.concluded:
-            score += 3
+            score += 9
         if (
             match.result in [MatchResult.DRAW.value, MatchResult.INTENTIONAL_DRAW.value]
             and match.concluded
@@ -43,7 +43,7 @@ def get_record(player: Player, count_byes=True) -> dict[str, float]:
         if not match.concluded:
             continue
         if match.result == MatchResult.CORP_WIN.value and match.concluded:
-            score += 3
+            score += 9
         if (
             match.result in [MatchResult.DRAW.value, MatchResult.INTENTIONAL_DRAW.value]
             and match.concluded
